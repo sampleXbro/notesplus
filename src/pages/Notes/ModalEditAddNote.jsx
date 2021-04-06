@@ -7,11 +7,12 @@ import {Option} from "../../componenets/Select/Option"
 import {Select} from "../../componenets/Select/Select"
 import {TextArea} from "../../componenets/TextArea/TextArea"
 
-export const ModalEditAddNote = ({isVisible, onClose, note, onSubmit, onChangeInputs, categories, labels}) => (
+export const ModalEditAddNote = ({isVisible, onClose, note, onSubmit, onChangeInputs, categories, labels, isDisabledSubmit}) => (
     <Modal
         isVisible={isVisible}
         onClose={onClose}
         onSubmit={onSubmit}
+        isDisabledSubmit={isDisabledSubmit}
     >
         <Title size={'16px'} margin={'5px'}>
             Title:
@@ -93,6 +94,9 @@ export const ModalEditAddNote = ({isVisible, onClose, note, onSubmit, onChangeIn
                 ))}
 
             </Select>
+        </Title>
+        <Title margin={'5px'} color={'#e74c3c'}>
+            * - Required
         </Title>
     </Modal>
 )

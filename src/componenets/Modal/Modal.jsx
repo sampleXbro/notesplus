@@ -4,7 +4,7 @@ import {any, func, bool} from "prop-types"
 import {Container} from "../Container/Container"
 import {ColoredLine} from "../ColoredLine/ColoredLine"
 
-export const Modal = ({children, isVisible, onSubmit, onClose}) => {
+export const Modal = ({children, isVisible, onSubmit, onClose, isDisabledSubmit}) => {
 
     if(!isVisible) return null
 
@@ -37,6 +37,7 @@ export const Modal = ({children, isVisible, onSubmit, onClose}) => {
                         radius={'5px'}
                         textSize={'16px'}
                         onClick={onSubmit}
+                        disabled={isDisabledSubmit}
                     >
                         Submit
                     </Button>

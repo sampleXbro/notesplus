@@ -1,6 +1,7 @@
 import {string, func} from 'prop-types'
+import './Button.module.sass'
 
-export const Button = ({children, radius, width, height, color, textColor, textSize, align, onClick, name}) => {
+export const Button = ({children, radius, width, height, color, textColor, textSize, align, onClick, name, disabled}) => {
 
     const styles = {
         borderRadius: radius || '',
@@ -8,16 +9,12 @@ export const Button = ({children, radius, width, height, color, textColor, textS
         width: width,
         height: height,
         backgroundColor: color || '#00BCD4',
-        border: 'none',
-        outline: 'none',
         color: textColor || 'white',
         fontSize: textSize || '18px',
-        margin: '5px',
-        cursor: 'pointer'
     }
 
     return (
-        <button style={styles} onClick={onClick} name={name}>
+        <button style={styles} onClick={onClick} name={name} disabled={disabled}>
             {children}
         </button>
     );

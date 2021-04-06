@@ -74,6 +74,7 @@ export const Labels = () => {
                 onClose={() => setModalMode('')}
                 isVisible={!!modalMode}
                 label={label}
+                isDisabledSubmit={!label.title || !label.color}
             />
 
             <Button

@@ -5,11 +5,12 @@ import {bool, func, object, array} from "prop-types"
 import {Select} from "../../componenets/Select/Select"
 import {Option} from "../../componenets/Select/Option"
 
-export const ModalAddEditCategory = ({isVisible, onClose, onSubmit, onInputsChange, category, categories}) => (
+export const ModalAddEditCategory = ({isVisible, onClose, onSubmit, onInputsChange, category, categories, isDisabledSubmit}) => (
     <Modal
         isVisible={isVisible}
         onClose={onClose}
         onSubmit={onSubmit}
+        isDisabledSubmit={isDisabledSubmit}
     >
         <Title margin={'5px'}>
             Parent:
@@ -18,7 +19,7 @@ export const ModalAddEditCategory = ({isVisible, onClose, onSubmit, onInputsChan
                 onChange={onInputsChange}
                 value={category.parent}
             >
-                <Option value={''} disabled>----- NO CATEGORY -----</Option>
+                <Option value={''}>----- NO CATEGORY -----</Option>
 
                 {categories && categories.map(cat => {
                         if (category.id === cat.id) return null
@@ -36,13 +37,16 @@ export const ModalAddEditCategory = ({isVisible, onClose, onSubmit, onInputsChan
         </Title>
 
         <Title margin={'5px'}>
-            Title:
+            Title: *
             <Input
                 value={category.title}
                 name={'title'}
                 onChange={onInputsChange}
                 holder={'Category title'}
             />
+        </Title>
+        <Title margin={'5px'} color={'#e74c3c'}>
+            * - Required
         </Title>
     </Modal>
 )

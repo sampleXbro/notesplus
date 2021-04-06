@@ -18,8 +18,8 @@ export const Note = (props) => {
     const noteLabels = labelsSnapshot && labelsIds && labelsSnapshot.filter(label => labelsIds.includes(label.id))
 
     const dynStyle ={
-        border: `${color} 1px solid`,
-        boxShadow: `0 0 7px 0 ${color}`
+        border: color && `${color} 1px solid`,
+        boxShadow: color && `0 0 7px 0 ${color}`
     }
 
     return (

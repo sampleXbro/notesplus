@@ -89,6 +89,7 @@ export const Notes = () => {
                 categories={categoriesSnapshot}
                 note={note}
                 onChangeInputs={handleInputs}
+                isDisabledSubmit={!note.title || !note.description}
             />
 
             <Button

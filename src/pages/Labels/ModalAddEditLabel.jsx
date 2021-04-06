@@ -7,20 +7,21 @@ import {Select} from "../../componenets/Select/Select"
 import {Option} from "../../componenets/Select/Option"
 import {ModalAddEditCategory} from "../Categories/ModalAddEditCategory";
 
-export const ModalAddEditLabel = ({isVisible, onClose, onSubmit, onInputsChange, label}) => (
+export const ModalAddEditLabel = ({isVisible, onClose, onSubmit, onInputsChange, label, isDisabledSubmit}) => (
     <Modal
         isVisible={isVisible}
         onClose={onClose}
         onSubmit={onSubmit}
+        isDisabledSubmit={isDisabledSubmit}
     >
         <Title margin={'5px'}>
-            Color:
+            Color: *
             <Select
                 name={'color'}
                 onChange={onInputsChange}
                 value={label.color}
             >
-                <Option>----- Select color -----</Option>
+                <Option value={''}>----- Select color -----</Option>
                 {colors.map(color => (
                     <Option
                         key={color.title}
@@ -35,13 +36,17 @@ export const ModalAddEditLabel = ({isVisible, onClose, onSubmit, onInputsChange,
         </Title>
 
         <Title margin={'5px'}>
-            Title:
+            Title: *
             <Input
                 value={label.title}
                 name={'title'}
                 onChange={onInputsChange}
                 holder={'Category title'}
             />
+        </Title>
+
+        <Title margin={'5px'} color={'#e74c3c'}>
+            * - Required
         </Title>
     </Modal>
 )

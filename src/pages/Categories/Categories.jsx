@@ -63,13 +63,18 @@ export const Categories = () => {
         }
     }
 
-    const sortCat = (parentId = '') => { //recursively sorts categories tree
-        const roots = categoriesSnapshot.filter(c => c.parent === parentId)
+    const sortCat = (data, parentId = '') => { //recursively sorts categories tree
+        const roots = data.filter(c => c.parent === parentId)
 
         return roots.map(root => {
 
-            const parent = categoriesSnapshot.find(c => root.parent === c.id)
-            const isDeletable  = !categoriesSnapshot.find(c => root.id === c.parent)
+            const parent = data.find(
+                c => root.parent === c.id
+            ) // finds appropriate category object by id
+
+            const isDeletable  = !data.find(
+                c => root.id === c.parent
+            ) // finds last item of the branch to add deleting possibility
 
             return (
                 <ListItem
@@ -82,14 +87,14 @@ export const Categories = () => {
                     description={parent ? `Parent: ${parent.title.toUpperCase()}` : 'Root'}
                     deletable={isDeletable}
                 >
-                    {sortCat(root.id)}
+                    {sortCat(data, root.id)}
                 </ListItem>
             )
         })
     }
 
-
     if(isLoading) return <Loader/>
+
     return (
         <Container padding={'5px'}>
 
@@ -100,6 +105,7 @@ export const Categories = () => {
                 onSubmit={handleSubmit}
                 category={category}
                 onInputsChange={handleInputs}
+                isDisabledSubmit={!category.title}
             />
 
             <Button
@@ -115,8 +121,8 @@ export const Categories = () => {
 
             <Container>
 
-                {categoriesSnapshot && sortCat()}
-                
+                {categoriesSnapshot && sortCat(categoriesSnapshot)}
+
             </Container>
 
         </Container>
