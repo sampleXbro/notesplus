@@ -12,39 +12,42 @@ export const ModalAddEditCategory = ({isVisible, onClose, onSubmit, onInputsChan
         onSubmit={onSubmit}
         isDisabledSubmit={isDisabledSubmit}
     >
-        <Title margin={'5px'}>
+        <Title margin={'5px 0'}>
             Parent:
-            <Select
-                name={'parent'}
-                onChange={onInputsChange}
-                value={category.parent}
-            >
-                <Option value={''}>----- NO CATEGORY -----</Option>
-
-                {categories && categories.map(cat => {
-                        if (category.id === cat.id) return null
-                        return (
-                            <Option
-                                key={cat.id}
-                                value={cat.id}
-                            >
-                                {cat.title.toUpperCase()}
-                            </Option>
-                        )
-                    }
-                )}
-            </Select>
         </Title>
+
+        <Select
+            name={'parent'}
+            onChange={onInputsChange}
+            value={category.parent}
+        >
+            <Option value={''}>----- NO CATEGORY -----</Option>
+
+            {categories && categories.map(cat => {
+                    if (category.id === cat.id) return null
+                    return (
+                        <Option
+                            key={cat.id}
+                            value={cat.id}
+                        >
+                            {cat.title.toUpperCase()}
+                        </Option>
+                    )
+                }
+            )}
+        </Select>
 
         <Title margin={'5px'}>
             Title: *
-            <Input
-                value={category.title}
-                name={'title'}
-                onChange={onInputsChange}
-                holder={'Category title'}
-            />
         </Title>
+
+        <Input
+            value={category.title}
+            name={'title'}
+            onChange={onInputsChange}
+            holder={'Category title'}
+        />
+
         <Title margin={'5px'} color={'#e74c3c'}>
             * - Required
         </Title>

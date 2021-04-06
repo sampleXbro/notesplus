@@ -120,9 +120,7 @@ export const Categories = () => {
             </Button>
 
             <Container>
-
                 {categoriesSnapshot && sortCat(categoriesSnapshot)}
-
             </Container>
 
         </Container>

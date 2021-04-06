@@ -22,6 +22,7 @@ export const ListItem = (props) => {
                         {description}
                     </Title>
                 </Title>
+
                 <div className={styles.iconsContainer}>
                     <img
                         className={styles.icon}

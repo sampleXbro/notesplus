@@ -4,7 +4,9 @@ import styles from './Navbar.module.sass'
 
 export const Navbar = () => (
     <nav className={styles.navbar}>
+
         <Title margin={'auto 10px'} size={'24px'} color={'white'}>NOTES+</Title>
+
         <ul className={styles.navmenu}>
             <li>
                 <NavLink

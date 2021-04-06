@@ -5,7 +5,7 @@ export const Select = ({children, name, value, onChange, defaultVal, multiple, h
 
     const styles = {
         color: name === 'color' ? value : '',
-        height: height || '25px'
+        height: height || '25px',
     }
 
     return (

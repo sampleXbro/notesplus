@@ -5,7 +5,7 @@ import styles from './Note.module.sass'
 import {ColoredLine} from "../ColoredLine/ColoredLine"
 import editIcon from '../../images/note-edit-outline.png'
 import deleteIcon from '../../images/trash-can-outline.png'
-import {func, string, number, object, array, oneOfType} from "prop-types";
+import {func, string, number, object, array, oneOfType} from "prop-types"
 
 export const Note = (props) => {
 

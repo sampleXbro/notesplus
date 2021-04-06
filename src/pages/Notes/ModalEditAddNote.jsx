@@ -14,87 +14,92 @@ export const ModalEditAddNote = ({isVisible, onClose, note, onSubmit, onChangeIn
         onSubmit={onSubmit}
         isDisabledSubmit={isDisabledSubmit}
     >
-        <Title size={'16px'} margin={'5px'}>
-            Title:
-            <Input
-                name={'title'}
-                holder={'Note title'}
-                value={note.title}
-                onChange={onChangeInputs}
-            />
-        </Title>
-        <Title margin={'5px'}>
-            Description:
-            <TextArea
-                name={'description'}
-                holder={'Note description'}
-                value={note.description}
-                onChange={onChangeInputs}
-            />
+        <Title margin={'5px 0'}>
+            Title: *
         </Title>
 
-        <Title margin={'5px'}>
+        <Input
+            name={'title'}
+            holder={'Note title'}
+            value={note.title}
+            onChange={onChangeInputs}
+        />
+
+        <Title margin={'5px 0'}>
+            Description: *
+        </Title>
+
+        <TextArea
+            name={'description'}
+            holder={'Note description'}
+            value={note.description}
+            onChange={onChangeInputs}
+        />
+
+        <Title margin={'5px 0'}>
             Color:
-            <Select
-                name={'color'}
-                onChange={onChangeInputs}
-                value={note.color}
-            >
-                <Option>----- Select color -----</Option>
-                {colors.map(color => (
-                    <Option
-                        key={color.title}
-                        value={color.hex}
-                        color={color.hex}
-                    >
-                        {color.title.toUpperCase()}
-                    </Option>
-                ))}
-            </Select>
         </Title>
+        <Select
+            name={'color'}
+            onChange={onChangeInputs}
+            value={note.color}
+        >
+            <Option>----- Select color -----</Option>
+            {colors.map(color => (
+                <Option
+                    key={color.title}
+                    value={color.hex}
+                    color={color.hex}
+                >
+                    {color.title.toUpperCase()}
+                </Option>
+            ))}
+        </Select>
 
-        <Title margin={'5px'}>
+
+        <Title margin={'5px 0'}>
             Categories:
-            <Select
-                name={'categories'}
-                onChange={onChangeInputs}
-                defaultVal={note.categories}
-                multiple
-                height={'100px'}
-            >
-                {categories.map(category => (
-                    <Option
-                        key={category.id}
-                        value={category.id}
-                    >
-                        {category.title.toUpperCase()}
-                    </Option>
-                ))}
-
-            </Select>
         </Title>
+        <Select
+            name={'categories'}
+            onChange={onChangeInputs}
+            defaultVal={note.categories}
+            multiple
+            height={'100px'}
+        >
+            {categories.map(category => (
+                <Option
+                    key={category.id}
+                    value={category.id}
+                >
+                    {category.title.toUpperCase()}
+                </Option>
+            ))}
 
-        <Title margin={'5px'}>
+        </Select>
+
+        <Title margin={'5px 0'}>
             Labels:
-            <Select
-                name={'labels'}
-                onChange={onChangeInputs}
-                defaultVal={note.labels}
-                multiple
-                height={'100px'}
-            >
-                {labels.map(label => (
-                    <Option
-                        key={label.id}
-                        value={label.id}
-                        color={label.color}
-                    >
-                        {label.title.toUpperCase()}
-                    </Option>
-                ))}
-
-            </Select>
         </Title>
+        <Select
+            name={'labels'}
+            onChange={onChangeInputs}
+            defaultVal={note.labels}
+            multiple
+            height={'100px'}
+        >
+            {labels.map(label => (
+                <Option
+                    key={label.id}
+                    value={label.id}
+                    color={label.color}
+                >
+                    {label.title.toUpperCase()}
+                </Option>
+            ))}
+
+        </Select>
+
         <Title margin={'5px'} color={'#e74c3c'}>
             * - Required
         </Title>
@@ -108,7 +113,8 @@ ModalEditAddNote.propTypes = {
     onSubmit: func,
     onChangeInputs: func,
     categories: array,
-    labels: array
+    labels: array,
+    isDisabledSubmit: bool
 }
 
 ModalEditAddNote.defaultProps = {
@@ -118,5 +124,6 @@ ModalEditAddNote.defaultProps = {
     onSubmit: () => {},
     onChangeInputs: () => {},
     categories: [],
-    labels: []
+    labels: [],
+    isDisabledSubmit: true
 }

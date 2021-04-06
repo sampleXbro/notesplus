@@ -14,36 +14,38 @@ export const ModalAddEditLabel = ({isVisible, onClose, onSubmit, onInputsChange,
         onSubmit={onSubmit}
         isDisabledSubmit={isDisabledSubmit}
     >
-        <Title margin={'5px'}>
+        <Title margin={'5px 0'}>
             Color: *
-            <Select
-                name={'color'}
-                onChange={onInputsChange}
-                value={label.color}
-            >
-                <Option value={''}>----- Select color -----</Option>
-                {colors.map(color => (
-                    <Option
-                        key={color.title}
-                        value={color.hex}
-                        color={color.hex}
-                    >
-                        {color.title.toUpperCase()}
-                    </Option>
-                ))}
-
-            </Select>
         </Title>
 
-        <Title margin={'5px'}>
+        <Select
+            name={'color'}
+            onChange={onInputsChange}
+            value={label.color}
+        >
+            <Option value={''}>----- Select color -----</Option>
+            {colors.map(color => (
+                <Option
+                    key={color.title}
+                    value={color.hex}
+                    color={color.hex}
+                >
+                    {color.title.toUpperCase()}
+                </Option>
+            ))}
+
+        </Select>
+
+        <Title margin={'5px 0'}>
             Title: *
+        </Title>
             <Input
                 value={label.title}
                 name={'title'}
                 onChange={onInputsChange}
                 holder={'Category title'}
             />
-        </Title>
+
 
         <Title margin={'5px'} color={'#e74c3c'}>
             * - Required
