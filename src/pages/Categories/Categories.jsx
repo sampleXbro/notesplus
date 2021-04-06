@@ -6,6 +6,7 @@ import {useSnapshot} from "../../firebase/hooks/useSnapshot"
 import {ModalAddEditCategory} from "./ModalAddEditCategory"
 import {ListItem} from "../../componenets/ListItem/ListItem"
 import {Container} from "../../componenets/Container/Container"
+import {Title} from "../../componenets/Title/Title";
 
 const initCategory = {
     parent: '',
@@ -120,7 +121,14 @@ export const Categories = () => {
             </Button>
 
             <Container>
-                {categoriesSnapshot && sortCat(categoriesSnapshot)}
+                {
+                    categoriesSnapshot ? sortCat(categoriesSnapshot)
+
+                :
+                    <Title margin={'10px auto'} size={'16px'} align={'center'}>
+                        There are no categories. Let's create one now!
+                    </Title>
+                }
             </Container>
 
         </Container>

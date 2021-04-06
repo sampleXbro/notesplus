@@ -121,7 +121,7 @@ export const Notes = () => {
 
                     :
 
-                    <Title size={'16px'} margin={'10px auto'}>
+                    <Title size={'16px'} margin={'10px auto'} align={'center'}>
                     There are no notes here yet. Let's create the first one!
                     </Title>
             }

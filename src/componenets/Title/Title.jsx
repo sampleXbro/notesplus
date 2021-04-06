@@ -1,6 +1,6 @@
 import {number, any, func, string, oneOfType} from "prop-types"
 
-export const Title = ({children, size, color, width, margin, cursor, onClick, fontStyle}) => {
+export const Title = ({children, size, color, width, margin, cursor, onClick, fontStyle, align}) => {
 
     const styles = {
         fontSize: size || '12px',
@@ -8,7 +8,8 @@ export const Title = ({children, size, color, width, margin, cursor, onClick, fo
         margin: margin || 0,
         cursor: cursor || '',
         fontWeight: width || 400,
-        fontStyle: fontStyle || ''
+        fontStyle: fontStyle || '',
+        textAlign: align
     }
 
     return (

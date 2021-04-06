@@ -6,6 +6,7 @@ import {ModalAddEditLabel} from "./ModalAddEditLabel"
 import {ListItem} from "../../componenets/ListItem/ListItem"
 import {useSnapshot} from "../../firebase/hooks/useSnapshot"
 import {Container} from "../../componenets/Container/Container"
+import {Title} from "../../componenets/Title/Title";
 
 const initLabel = {
     color: '',
@@ -89,7 +90,7 @@ export const Labels = () => {
             </Button>
 
             <Container>
-                {labelsSnapshot && labelsSnapshot.map(label =>
+                {labelsSnapshot ? labelsSnapshot.map(label =>
                     <ListItem
                         title={label.title.toUpperCase()}
                         color={label.color}
@@ -98,7 +99,12 @@ export const Labels = () => {
                         onEditClick={handleClicks}
                         onDeleteClick={handleClicks}
                     />
-                )}
+                )
+                :
+                    <Title margin={'10px auto'} size={'16px'} align={'center'}>
+                        You've deleted all the labels. Let's create one now!
+                    </Title>
+                }
             </Container>
 
         </Container>
