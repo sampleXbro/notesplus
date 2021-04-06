@@ -9,7 +9,7 @@ import {func, string, number, object, array, oneOfType} from "prop-types"
 
 export const Note = (props) => {
 
-    const {id, title, data, description, catIds, labelsIds, createdAt, onEditClick, onDeleteClick, onLabelClick, color} = props
+    const {id, title, data, description, catIds, labelsIds, createdAt, onEditClick, onDeleteClick, color} = props
 
     const categoriesSnapshot = data && data.categories
     const labelsSnapshot = data && data.labels
@@ -48,7 +48,7 @@ export const Note = (props) => {
             {noteLabels &&
             <div className={styles.labelsContainer}>
                 {noteLabels && noteLabels.map(label =>
-                    <Label key={label.id} color={label.color} onClick={onLabelClick}>
+                    <Label key={label.id} color={label.color}>
                         {label.title}
                     </Label>
                 )}

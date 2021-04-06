@@ -1,6 +1,6 @@
 import {any, func, string} from "prop-types";
 
-export const Label = ({children, color, radius, fontSize, onClick, labelId, noteId}) => {
+export const Label = ({children, color, radius, fontSize, labelId, noteId}) => {
 
     const styles = {
         display: 'flex',
@@ -15,11 +15,10 @@ export const Label = ({children, color, radius, fontSize, onClick, labelId, note
         width: 'fit-content',
         color: 'white',
         margin: '0 5px 5px 0',
-        cursor: 'pointer'
     }
 
     return (
-        <div style={styles} onClick={onClick} data-labelid={labelId} data-noteid={noteId}>
+        <div style={styles} data-labelid={labelId} data-noteid={noteId}>
             {children}
         </div>
     )

@@ -18,7 +18,7 @@ export const ListItem = (props) => {
             <div className={styles.listItemContainer} style={style}>
                 <Title size={'18px'}>
                     {title}
-                    <Title>
+                    <Title margin={'3px 0 0 0'}>
                         {description}
                     </Title>
                 </Title>
