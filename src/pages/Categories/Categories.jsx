@@ -1,13 +1,9 @@
 import React, {useState} from "react"
 import firebase from "../../firebase/config"
-import {Input} from "../../componenets/Input/Input"
-import {Modal} from "../../componenets/Modal/Modal"
-import {Title} from "../../componenets/Title/Title"
 import {Button} from "../../componenets/Button/Button"
 import {Loader} from "../../componenets/Loader/Loader"
-import {Select} from "../../componenets/Select/Select"
-import {Option} from "../../componenets/Select/Option"
 import {useSnapshot} from "../../firebase/hooks/useSnapshot"
+import {ModalAddEditCategory} from "./ModalAddEditCategory"
 import {ListItem} from "../../componenets/ListItem/ListItem"
 import {Container} from "../../componenets/Container/Container"
 
@@ -67,46 +63,44 @@ export const Categories = () => {
         }
     }
 
+    const sortCat = (parentId = '') => { //recursively sorts categories tree
+        const roots = categoriesSnapshot.filter(c => c.parent === parentId)
+
+        return roots.map(root => {
+
+            const parent = categoriesSnapshot.find(c => root.parent === c.id)
+            const isDeletable  = !categoriesSnapshot.find(c => root.id === c.parent)
+
+            return (
+                <ListItem
+                    title={root.title.toUpperCase()}
+                    key={root.id}
+                    itemId={root.id}
+                    onEditClick={handleClicks}
+                    onDeleteClick={handleClicks}
+                    border={!root.parent}
+                    description={parent ? `Parent: ${parent.title.toUpperCase()}` : 'Root'}
+                    deletable={isDeletable}
+                >
+                    {sortCat(root.id)}
+                </ListItem>
+            )
+        })
+    }
+
+
     if(isLoading) return <Loader/>
     return (
         <Container padding={'5px'}>
-            <Modal
+
+            <ModalAddEditCategory
+                categories={categoriesSnapshot}
                 isVisible={!!modalMode}
                 onClose={() => setModalMode('')}
                 onSubmit={handleSubmit}
-            >
-                <Title margin={'5px'}>
-                    Parent:
-                    <Select
-                        name={'parent'}
-                        onChange={handleInputs}
-                        value={category.parent}
-                    >
-                        <Option value={''} disabled>----- Select category -----</Option>
-                        {categoriesSnapshot && categoriesSnapshot.map(cat => {
-                            if(category.id === cat.id) return null
-                            return (
-                                <Option
-                                    key={cat.id}
-                                    value={cat.id}
-                                >
-                                    {cat.title.toUpperCase()}
-                                </Option>
-                            )}
-                        )}
-                    </Select>
-                </Title>
-
-                <Title margin={'5px'}>
-                    Title:
-                    <Input
-                        value={category.title}
-                        name={'title'}
-                        onChange={handleInputs}
-                        holder={'Category title'}
-                    />
-                </Title>
-            </Modal>
+                category={category}
+                onInputsChange={handleInputs}
+            />
 
             <Button
                 name={'add'}
@@ -120,15 +114,9 @@ export const Categories = () => {
             </Button>
 
             <Container>
-                {categoriesSnapshot && categoriesSnapshot.map(cat =>
-                    <ListItem
-                        title={cat.title.toUpperCase()}
-                        key={cat.id}
-                        itemId={cat.id}
-                        onEditClick={handleClicks}
-                        onDeleteClick={handleClicks}
-                    />
-                )}
+
+                {categoriesSnapshot && sortCat()}
+                
             </Container>
 
         </Container>

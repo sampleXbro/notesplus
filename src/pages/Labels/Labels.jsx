@@ -1,13 +1,8 @@
 import React, {useState} from "react"
-import {colors} from "../../utils/colors"
 import firebase from "../../firebase/config"
-import {Title} from "../../componenets/Title/Title"
-import {Input} from "../../componenets/Input/Input"
-import {Modal} from "../../componenets/Modal/Modal"
 import {Button} from "../../componenets/Button/Button"
-import {Select} from "../../componenets/Select/Select"
-import {Option} from "../../componenets/Select/Option"
 import {Loader} from "../../componenets/Loader/Loader"
+import {ModalAddEditLabel} from "./ModalAddEditLabel"
 import {ListItem} from "../../componenets/ListItem/ListItem"
 import {useSnapshot} from "../../firebase/hooks/useSnapshot"
 import {Container} from "../../componenets/Container/Container"
@@ -73,42 +68,13 @@ export const Labels = () => {
     return (
         <Container padding={'5px'}>
 
-            <Modal
-                isVisible={!!modalMode}
-                onClose={() => setModalMode('')}
+            <ModalAddEditLabel
+                onInputsChange={handleInputs}
                 onSubmit={handleSubmit}
-            >
-                <Title margin={'5px'}>
-                    Color:
-                    <Select
-                        name={'color'}
-                        onChange={handleInputs}
-                        value={label.color}
-                    >
-                        <Option>----- Select color -----</Option>
-                        {colors.map(color => (
-                            <Option
-                                key={color.title}
-                                value={color.hex}
-                                color={color.hex}
-                            >
-                                {color.title.toUpperCase()}
-                            </Option>
-                        ))}
-
-                    </Select>
-                </Title>
-
-                <Title margin={'5px'}>
-                    Title:
-                    <Input
-                        value={label.title}
-                        name={'title'}
-                        onChange={handleInputs}
-                        holder={'Category title'}
-                    />
-                </Title>
-            </Modal>
+                onClose={() => setModalMode('')}
+                isVisible={!!modalMode}
+                label={label}
+            />
 
             <Button
                 name={'add'}

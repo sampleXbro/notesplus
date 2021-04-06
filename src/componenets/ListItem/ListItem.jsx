@@ -6,10 +6,11 @@ import deleteIcon from "../../images/trash-can-outline.png"
 
 export const ListItem = (props) => {
 
-    const {title, children, color, itemId, onEditClick, onDeleteClick} = props
+    const {title, children, color, itemId, onEditClick, onDeleteClick, deletable = true, border, description} = props
 
     const style ={
-        backgroundColor: color
+        backgroundColor: color,
+        border: border &&'2px solid #00BCD4'
     }
 
     return (
@@ -17,6 +18,9 @@ export const ListItem = (props) => {
             <div className={styles.listItemContainer} style={style}>
                 <Title size={'18px'}>
                     {title}
+                    <Title>
+                        {description}
+                    </Title>
                 </Title>
                 <div className={styles.iconsContainer}>
                     <img
@@ -24,19 +28,22 @@ export const ListItem = (props) => {
                         src={editIcon}
                         alt="edit"
                         name="edit"
-                        title="edit icon"
+                        title="Edit"
                         data-id={itemId}
                         onClick={onEditClick}
                     />
-                    <img
-                        className={styles.icon}
-                        src={deleteIcon}
-                        alt="delete"
-                        name="delete"
-                        title="delete icon"
-                        data-id={itemId}
-                        onClick={onDeleteClick}
-                    />
+                    {deletable &&
+                        <img
+                            className={styles.icon}
+                            src={deleteIcon}
+                            alt="delete"
+                            name="delete"
+                            title="Delete"
+                            data-id={itemId}
+                            onClick={onDeleteClick}
+                        />
+                    }
+
                 </div>
 
             </div>

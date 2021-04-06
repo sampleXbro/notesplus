@@ -1,18 +1,18 @@
-import styles from './App.module.sass';
-import {Navbar} from "./componenets/Navbar/Navbar";
+import styles from './App.module.sass'
+import {Notes} from "./pages/Notes/Notes"
+import {Labels} from "./pages/Labels/Labels"
+import {Navbar} from "./componenets/Navbar/Navbar"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
-import {Notes} from "./pages/Notes/Notes";
-import {Categories} from "./pages/Categories/Categories";
-import {Labels} from "./pages/Labels/Labels";
+import {Categories} from "./pages/Categories/Categories"
 
 export const App = () => {
 
     return (
-        <Router>
+        <Router basename={'/notesplus'}>
             <div className={styles.App}>
 
             <Navbar/>
