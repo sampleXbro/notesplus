@@ -117,7 +117,7 @@ export const Notes = () => {
                         labelsIds={note.labels}
                         createdAt={note.createdAt}
                         data={snapshot}
-                    />))
+                    />)).reverse()
 
                     :
 
